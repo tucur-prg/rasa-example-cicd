@@ -6,6 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v1
+
           - name: Rasa Train and Test GitHub Action
             uses: RasaHQ/rasa-train-test-gha@main
             with:
@@ -19,16 +20,18 @@ jobs:
                 test_type: nlu
                 publish_summary: true
                 github_token: ${{ secrets.GITHUB_TOKEN }}
+
           - name: Upload model
             if: github.ref == 'refs/heads/main'
             uses: actions/upload-artifact@master
             with:
                 name: model
-                path: models
+                path: src/models
+
           - name: Store test results
             uses: actions/upload-artifact@v2
             with:
                 name: test-results
                 path: |
-                    results
-                    reports
+                    src/results
+                    src/reports
