@@ -15,7 +15,7 @@ jobs:
                 requirements_file: requirements.txt
                 data_validate: true
                 rasa_train: true
-                cross_validation: true
+                cross_validation: false
                 rasa_test: true
                 test_type: nlu
                 publish_summary: true
